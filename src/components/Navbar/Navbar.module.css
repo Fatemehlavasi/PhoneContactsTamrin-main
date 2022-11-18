@@ -1,0 +1,51 @@
+.container{
+    box-shadow: 10px 10px 10px rgb(244, 231, 231);
+    
+}
+.formSearch{
+    position: relative;
+    width:80%;
+}
+.navbarTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input{
+    width: 100%;
+    height: 40px;
+    padding: 0 40px;
+    border-radius: 5px;
+    background-color: #f9e8e8;
+    border: 0;
+    outline: 0;
+    margin-top: 10px;
+}
+.location{
+    position: absolute;
+    top:22px;
+    left: 10px;
+}
+.list{
+    display: flex;
+    list-style-type: none;
+    width: 70%;
+    justify-content: space-between;
+}
+.image{
+    width: 40px;
+    height: 40px;
+    margin: 10px 10px 0 0;
+    border-radius: 50%;
+}
+.iconNavbar{
+    display: flex;
+    gap: 20px;
+}
+.navbarBot{
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}

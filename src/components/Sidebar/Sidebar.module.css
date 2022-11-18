@@ -1,0 +1,49 @@
+/* .container{
+    width: 30%;
+    height: 100vh;
+}
+.container h2{
+    margin:10px 0 10px 70px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+h2 i{
+    width: 35px;
+    height: 35px;
+    background-color: blueviolet;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 5px;
+}
+.container h3{
+    width: 70%;
+    background-color: #fff;
+    box-shadow: 10px 10px 10px rgb(244, 231, 231);
+    padding: 20px 20px 20px 40px;
+    display: flex;
+    gap: 20px;
+    border-radius: 50px;
+}
+.list{
+    list-style-type: none;
+    line-height: 2.5rem;
+    margin: 30px 0;
+}
+.user{
+    background-color: pink;
+    border-radius: 20px;
+    width: 90%;
+}
+li{
+    cursor: pointer;
+    padding: 0 25px;
+}
+li i{
+  padding: 0 10px;
+}
+.book ,.faceBook,.address{
+    border-bottom: 1px solid lightgray;
+    width: 90%;
+} */
