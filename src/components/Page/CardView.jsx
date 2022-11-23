@@ -3,9 +3,16 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { Grid, Typography } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 const CardView = ({ todos }) => {
-
     const [contact, setContact] = useState({})
     const { user } = useParams()
     useEffect(() => {
@@ -13,33 +20,26 @@ const CardView = ({ todos }) => {
     }, [])
 
     return (
-        <Grid container justifyContent={'center'} mt={20} >
-            <Grid container alignItems={'center'} item p={1} direction={'column'} justifyContent={'center'} md={4} xs={12} sx={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}>
-                <Grid container item mt={1} justifyContent={'center'} >
-                    <Grid item border={1} borderRadius={40} height={"90px"} width={"90px"} p={1} mb={5}>
+        <Grid container display={"flex"} justifyContent={'center'} mt={15} >
+            <Grid container md={3} item mt={1} pt={5} justifyContent={'center'} borderRadius={4} bgcolor={"#FD9A07"} sx={{bgcolor:{ xs: "#fff", md: "#FD9A07" } , p:{ xs: "35px", md: "0"}}} >
+                    <Grid item border={1} borderRadius={40} height={"90px"} width={"90px"} mt={2} p={1} >
                         <img src={`https://avatars.dicebear.com/api/avataaars/:${contact.user}.svg`} alt="avatar" />
                     </Grid>
-                    <Grid item bgcolor={"blue"} xs={12} justifyContent={'center'} >
-                        <Typography textAlign={'center'}>fullname : {contact.fullname}</Typography>
+                    <Grid item  xs={12} justifyContent={'center'} >
+                        <Typography variant='h5' textAlign={'center'}> {contact.fullname}</Typography>
                     </Grid>
-                </Grid>
-                <Grid  >
-                    <Grid >
-                        <h5> phone : {contact.phone}</h5>
-                    </Grid>
-                    <Grid class="card-body" style={{ cursor: 'pointer' }}>
-                        <h5>state : {contact.state ? <i class="fa-solid fa-heart text-danger" ></i> : <i class="fa-regular fa-heart " ></i>}</h5>
-                    </Grid>
-                    <Grid class="card-body" >
-                        <h5>City : {contact.City}</h5>
-                    </Grid>
-                    <Grid class="card-body" >
-                        <h5> Email :{contact.email}</h5>
-                        {/* <TextField disabled value={contact.email} id="input-with-icon-textfield" label="User Name" InputProps={{startAdornment: (<InputAdornment position="start"><AccountCircle/></InputAdornment>),}} variant="standard"/> */}
-                    </Grid>
-                </Grid>
+            </Grid>
+            <Grid sx={{'& > :not(style)': {m: 1, width: '100%'}}} ml={1} md={5} xs={12}>
+                <TextField disabled value={contact.fullname} id="input-with-icon-textfield" label="User Name" InputProps={{startAdornment: (<InputAdornment position="start"><AccountCircle/></InputAdornment>),}} variant="standard"/>
+                <TextField disabled value={contact.phone} id="input-with-icon-textfield" label="Number" InputProps={{startAdornment: (<InputAdornment position="start"><PhoneIcon/></InputAdornment>),}} variant="standard"/>
+                <TextField disabled value={contact.City} id="input-with-icon-textfield" label="City" InputProps={{startAdornment: (<InputAdornment position="start"><LocationCityIcon/></InputAdornment>),}} variant="standard"/>
+                <TextField disabled value={contact.email} id="input-with-icon-textfield" label="Email" InputProps={{startAdornment: (<InputAdornment position="start"><ContactMailIcon/></InputAdornment>),}} variant="standard"/>
+            <Grid display={"flex"} alignItems={"center"} justifyContent={"space-between"}  mt={5}  color={"red"}>
+              <Typography variant='h6' color={"#000"}>  Favorite Contact</Typography>
+                <h1>{contact.favorite ==="favorite"  ? <Favorite/> : <FavoriteBorder/>}</h1>   
+            </Grid>
                 <Link to={'/'}>
-                    <KeyboardBackspaceIcon />
+                        <KeyboardBackspaceIcon />
                 </Link>
             </Grid>
         </Grid>

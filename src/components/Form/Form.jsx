@@ -1,10 +1,14 @@
-import { Grid, Typography, Button } from '@mui/material';
+import { Grid, Typography, Button ,  } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import CreateIcon from '@mui/icons-material/Create';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Link, useNavigate } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import pic from '../../Imags/pic.png'
+import {useState} from "react"
+import MenuItem from '@mui/material/MenuItem';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 const Form = ({ setTodos, todos, form, setForm, setFormStatus, FormStatus }) => {
     const back = useNavigate();
 
@@ -15,15 +19,15 @@ const Form = ({ setTodos, todos, form, setForm, setFormStatus, FormStatus }) => 
         back('/')
         event.preventDefault()
         if (FormStatus === 'add') {
-            setTodos([...todos, { user: Math.floor(Math.random() * 1000), fullname: form.fullname, phone: form.phone, City: form.City, email: form.email }])
+            setTodos([...todos, { user: Math.floor(Math.random() * 1000), fullname: form.fullname, phone: form.phone, City: form.City, email: form.email , favorite:form.favorite}])
         }
         else {
             setTodos(todos.map(todo => todo.user === form.user ? form : todo))
         }
-        setForm({ fullname: '', phone: '', City: '', email: '' })
+        setForm({ fullname: '', phone: '', City: '', email: ''  , favorite:''})
         setFormStatus('add')
     }
-
+    const [select , setSelect] = useState( [{value: "favorite", label: "favorite",}, {value: "unFavorite", label: "unFavorite",}])
  
     return (
 
@@ -67,7 +71,19 @@ const Form = ({ setTodos, todos, form, setForm, setFormStatus, FormStatus }) => 
                                     label="email" variant="outlined" />
 
                             </Grid>
+                            <Grid  item xs={12} my={1} display={"flex"} justifyContent={'center'} alignItems={'center'}>
 
+                                <TextField required onChange={handleChange} id="filled-select-currency" select label="Select" name={'favorite'} value={form.favorite}  variant="filled"  sx={{
+                                             width: '80%',
+                                            '.css-1mt7n99-MuiInputBase-root-MuiOutlinedInput-root': { borderRadius: '16px' }
+                                               }}>
+                                            {select.map((option) => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </MenuItem>
+                                            ))}
+                                 </TextField>
+                            </Grid>
                             <Grid display={"flex"} mr={5} mt={2} md={9.5} justifyContent={"flex-end"}  >
                                 <Button  variant='contained' type='submit' onClick={handleSubmit} className="btn-submit" >
                                     {FormStatus === 'add' ? <PersonAddIcon /> : <CreateIcon />}

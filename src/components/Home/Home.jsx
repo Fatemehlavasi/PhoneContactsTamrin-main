@@ -14,7 +14,7 @@ const Home = ({ todos, setTodos, setForm, setFormStatus }) => {
     // search
     const [search, setSearch] = useState('')
     //  filter
-    const [filter, setFilter] = useState('allData')
+    const [filter, setFilter] = useState('allContact')
     return (
         <Grid container justifyContent={'center'} >
             <Grid item p={1} md={10} xs={12} sx={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}>
@@ -28,13 +28,14 @@ const Home = ({ todos, setTodos, setForm, setFormStatus }) => {
                             <Link to={`/Form`}>
                                 {/* <GroupAddIcon /> */}
                                     <img width={"70px"} src={pic} alt="" />
+                                    <Typography>Add User</Typography>
                             </Link>
                         </Grid>
 
                     </Grid >
                     <Grid mt={8}>
                         <Grid display={"flex"}>
-                            <Filter filter={filter} setFilter={setFilter} />
+                            <Filter setFilter={setFilter}  filter={filter} />
                         </Grid>
                         <Grid mt={5}>
                             <Search search={search} setSearch={setSearch} />
@@ -42,13 +43,13 @@ const Home = ({ todos, setTodos, setForm, setFormStatus }) => {
                     </Grid>
 
                 </Grid>
-                <Grid className='container-card' >
-                    <TableContainer component={Paper} className={'MainPhone_Table'}>
+                <Grid  >
+                    <TableContainer component={Paper} >
                         <Table sx={{ minWidth: 100 }} aria-label="simple table">
                             <TableBody>
 
                                 {/* <Delete handelDelet={handelDelet} showMsg={showMsg} handelShowDisMsg={handelShowDisMsg}  handelShowMsg={handelShowMsg} /> */}
-                                {todos.filter(todo => todo.fullname.toUpperCase().includes(search.toUpperCase()) && (filter === 'allData' ? true : todo.state === filter)).map(todo => (
+                                {todos.filter(todo => todo.fullname.toUpperCase().includes(search.toUpperCase()) && (filter === 'allContact' ? true : todo.favorite === filter)).map(todo => (
                                     <Card todo={todo} setForm={setForm} setFormStatus={setFormStatus} todos={todos} setTodos={setTodos} />
                                 ))}
 

@@ -7,7 +7,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Grid } from '@mui/material';
 import Delete from "../Delete/Delete"
-import { grey } from '@mui/material/colors';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 const Card = ({ setForm, setFormStatus, setTodos, todos, todo }) => {
 
     const handelCheck = user => {
@@ -27,11 +28,10 @@ const Card = ({ setForm, setFormStatus, setTodos, todos, todo }) => {
         handelShowDisMsg()
 
     }
-
+const [favorite , setFavorite]=useState("favorite")
     const handelShowMsg = user => {
         setShowMag('flex')
         setuser(user)
-
     }
     const handelShowDisMsg = () => {
         setShowMag('none')
@@ -42,9 +42,11 @@ const Card = ({ setForm, setFormStatus, setTodos, todos, todo }) => {
         <>
             <TableRow key={user.id}>
                 <TableCell sx={{ width: '5%' }}>
+                    <Grid border={1} borderRadius={40} p={0.5}>
                     <Link to={`/contacts/${todo.user}`}>
                         <img style={{ width: '50px' }} src={`https://avatars.dicebear.com/api/avataaars/:${todo.user}.svg`} alt="avatar" />
                     </Link>
+                    </Grid>
                 </TableCell>
                 <TableCell>
                     <Grid>
@@ -65,8 +67,8 @@ const Card = ({ setForm, setFormStatus, setTodos, todos, todo }) => {
                     </Grid>
                 </TableCell>
                 <TableCell sx={{ width: '1%' }}>
-                    <Grid onClick={() => handelCheck(todo.user)}  >
-                        {todo.state ? <i class="fa-solid fa-heart text-danger" ></i> : <i class="fa-regular fa-heart " ></i>}
+                    <Grid  color={"red"}>
+                        {todo.favorite ==="favorite" ? <Favorite/> : <FavoriteBorder/>}
                     </Grid>
                 </TableCell>
                 <TableCell sx={{ width: '4%' }}>
